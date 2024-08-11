@@ -616,3 +616,15 @@ button:focus {
         margin: 10%;
     }
 }
+
+/* footer*/
+.footer {
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+.heart-icon {
+    color: red;
+    font-size: 1.2em;
+}
+
