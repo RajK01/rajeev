@@ -8,7 +8,7 @@
 	<script src="https://kit.fontawesome.com/de71e220d0.js" crossorigin="anonymous"></script>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<style>
-	      body {
+body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
@@ -26,11 +26,11 @@
 
 .portfolio-image-container {
     position: relative;
-    overflow: hidden;
     width: 300px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden;
 }
 
 .portfolio-image-container:hover {
@@ -41,19 +41,23 @@
 .portfolio-image-container img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    display: block;
+    border-radius: 10px 10px 0 0;
 }
 
 .portfolio-details {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
     padding: 10px;
-    background: rgba(0, 0, 0, 0.5);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    transition: background 0.3s;
+    background: #000;
+    opacity: 0.8;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 0 10px 10px;
+    height: 60px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .portfolio-details a {
@@ -61,7 +65,7 @@
     font-size: 16px;
     text-decoration: none;
     display: block;
-    text-align: center;
+    width: 100%;
 }
 
 .portfolio-details a:hover {
