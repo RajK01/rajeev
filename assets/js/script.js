@@ -107,7 +107,31 @@ function checkScroll() {
     }
 }
 
+        // Initialize EmailJS with your public key (User ID)
+emailjs.init("Zy5eDz71D4q2P-aux");  // Replace with your actual public key
 
+// Send the email when the form is submitted
+document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get form data
+    var name = document.getElementById('input-name').value;
+    var email = document.getElementById('input-email').value;
+    var message = document.getElementById('input-message').value;
+
+    // Use the emailjs.send() method to send the email
+    emailjs.send("service_ilfvkkm", "template_id", {
+        from_name: name,
+        from_email: email,
+        message: message
+    }).then(function(response) {
+        console.log("SUCCESS", response);
+        alert("Message sent successfully!");
+    }).catch(function(error) {
+        console.error("FAILED", error);
+        alert("Failed to send message. Please try again.");
+    });
+});
 
 window.addEventListener("scroll", checkScroll);
 
