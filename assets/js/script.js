@@ -1,13 +1,13 @@
-//for smooth scrolling
+// Smooth scrolling for navigation menu links
 var navMenuAnchorTags = document.querySelectorAll('.navigation-menu a');
 var interval;
+
 for (let i = 0; i < navMenuAnchorTags.length; i++) {
     navMenuAnchorTags[i].addEventListener('click', function (event) {
         event.preventDefault();
         var targetSectionID = this.textContent.trim().toLowerCase();
         var targetSection = document.getElementById(targetSectionID);
-        //    interval = setInterval(scrollVertically, 20, targetSection);
-         //or we can write function like below
+
         interval = setInterval(function () {
             scrollVertically(targetSection);
         }, 10);
@@ -23,45 +23,38 @@ function scrollVertically(targetSection) {
     window.scrollBy(0, 50);
 }
 
-// back to top function
-var intervaltop;
-var topbtn = document.querySelector('#topbtn');
+// Back-to-top button functionality
+const topbtn = document.querySelector('#topbtn');
 
-window.addEventListener('scroll', function(){
-    if (document.documentElement.scrollTop > 20) {
-        topbtn.style.display = "block";
-    } else {
-        topbtn.style.display = "none";
-    }
-});
-topbtn.addEventListener('click',function(event){
-    event.preventDefault();
-    intervaltop = setInterval(function(){
-        console.log(intervaltop)
-        if(document.documentElement.scrollTop <= 0 ){
-            clearInterval(intervaltop);
-            return;
-        }
-        window.scrollBy(0,-100);
-    },10)
+// Show or hide the button based on scroll position
+window.addEventListener('scroll', () => {
+    topbtn.style.display = document.documentElement.scrollTop > 20 ? 'block' : 'none';
 });
 
-// top scroll progress
+// Smooth scrolling back to the top
+topbtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Scroll progress bar
 var scrollbar = document.getElementById('scroll-bar');
+
 function getDocHeight() {
     var D = document;
     return Math.max(
         D.body.scrollHeight, D.body.offsetHeight, D.body.clientHeight
     );
 }
+
 var docHeight = getDocHeight();
 var windowHeight = window.innerHeight;
-window.addEventListener('scroll', function(){
-    var scrolled = Math.floor((window.scrollY/(docHeight-windowHeight))*100);
-    scrollbar.style.width = scrolled+ '%';
-})
 
-// to filling the skills bar
+window.addEventListener('scroll', function () {
+    var scrolled = Math.floor((window.scrollY / (docHeight - windowHeight)) * 100);
+    scrollbar.style.width = scrolled + '%';
+});
+
+// Skills progress bar initialization and animation
 var progressBars = document.querySelectorAll(".skill-progress > a > div");
 
 function initialiseBar(bar) {
@@ -74,7 +67,6 @@ for (var bar of progressBars) {
 }
 
 function fillBar(bar) {
-
     var currentWidth = 0;
     var targetWidth = bar.getAttribute("data-bar-width");
     var interval = setInterval(function () {
@@ -85,14 +77,9 @@ function fillBar(bar) {
         currentWidth++;
         bar.style.width = currentWidth + '%';
     }, 10);
-
 }
 
-
-
-// This function uses a for loop for individual progress bars.
 function checkScroll() {
-
     for (let bar of progressBars) {
         var barCoordinates = bar.getBoundingClientRect();
         if ((bar.getAttribute("data-visited") == "false") &&
@@ -103,15 +90,15 @@ function checkScroll() {
             bar.setAttribute("data-visited", false);
             initialiseBar(bar);
         }
-
     }
 }
 
-        // Initialize EmailJS with your public key (User ID)
-emailjs.init("Zy5eDz71D4q2P-aux");  // Replace with your actual public key
+window.addEventListener("scroll", checkScroll);
 
-// Send the email when the form is submitted
-document.getElementById('contact-form').addEventListener('submit', function(event) {
+// EmailJS form submission
+emailjs.init("Zy5eDz71D4q2P-aux"); // Replace with your actual public key
+
+document.getElementById('contact-form').addEventListener('submit', function (event) {
     event.preventDefault();
 
     // Get form data
@@ -124,16 +111,24 @@ document.getElementById('contact-form').addEventListener('submit', function(even
         from_name: name,
         from_email: email,
         message: message
-    }).then(function(response) {
+    }).then(function (response) {
         console.log("SUCCESS", response);
         alert("Message sent successfully!");
-    }).catch(function(error) {
+    }).catch(function (error) {
         console.error("FAILED", error);
         alert("Failed to send message. Please try again.");
     });
 });
 
+// Set initial width for skill bars
+document.querySelectorAll('.skill-progress div').forEach(skill => {
+    const barWidth = skill.getAttribute('data-bar-width');
+    if (barWidth) {
+        skill.style.width = `${barWidth}%`;
+    }
+});
+
 window.addEventListener("scroll", checkScroll);
 
-// This event fills the progress bars if they are displayed on the screen when the page is loaded.
+// Uncomment this line if you want the progress bars to fill on page load
 // window.addEventListener("load", checkScroll);
