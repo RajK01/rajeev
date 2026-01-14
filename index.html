@@ -467,10 +467,14 @@
                             Keep Rising 🚀. </p>
                     </div>
                     <div id="contact-form-container">
-                        <form id="contact-form">
-                            <input id="input-name" name="name" type="text" placeholder="Your Name">
-                            <input id="input-email" name="input-email" type="email" required placeholder="Your Email">
-                            <textarea id="input-message" name="input-message" rows="2" cols=40 placeholder="Message"></textarea>
+                        <form id="contact-form" action="https://formsubmit.co/7b877bb656c4b91586b713ac3316f059" method="POST">
+                            <!-- Disable captcha -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <!-- Redirect after submit -->
+                            <input type="hidden" name="_next" value="https://rajk01.github.io/rajeev/">
+                            <input id="input-name" name="name" type="text" placeholder="Your Name" required>
+                            <input id="input-email" name="email" type="email" required placeholder="Your Email">
+                            <textarea id="input-message" name="message" rows="2" cols="40" placeholder="Message" required></textarea>
                             <button class="sub-btn" type="submit">SEND MESSAGE</button>
                         </form>
                     </div>
@@ -526,5 +530,6 @@
         <script type="text/javascript" src="./assets/js/script.js"></script>
 </body>
 </html>
+
 
 
